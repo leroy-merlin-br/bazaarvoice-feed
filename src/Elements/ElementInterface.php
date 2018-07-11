@@ -30,7 +30,7 @@ interface ElementInterface
    * @param string     $name
    *   Element name.
    *
-   * @param string|array|null $value
+   * @param string $value
    *   (optional) element value.
    *
    * @param array      $attributes

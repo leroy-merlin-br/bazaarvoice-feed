@@ -20,7 +20,8 @@
     "ext-curl": "*",
     "phpunit/phpunit": "^7.2",
     "satooshi/php-coveralls": "^1.0",
-    "mikey179/vfsStream": "~1"
+    "mikey179/vfsStream": "~1",
+    "phpstan/phpstan": "^0.10.1"
   },
   "autoload": {
     "psr-4" : {
@@ -29,7 +30,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Tests\\": "tests",
+      "BazaarVoice\\": "tests/Unit"
     }
   },
   "scripts": {

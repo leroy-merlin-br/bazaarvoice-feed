@@ -10,14 +10,14 @@ class FeedTest extends TestCase {
 
   public function testNewFeedElement() {
     $pf = new Feed();
-    $name = substr( md5(rand()), 0, 8);
+    $name = substr(md5(uniqid()), 0, 8);
     $feed = $pf->newFeed($name);
     $this->assertInstanceOf('BazaarVoice\Elements\FeedElementInterface', $feed);
   }
 
   public function testNewBrandElement() {
     $pf = new Feed();
-    $name = substr( md5(rand()), 0, 8);
+    $name = substr(md5(uniqid()), 0, 8);
     $id = 'test_brand';
     $brand = $pf->newBrand($id, $name);
     $this->assertInstanceOf('BazaarVoice\Elements\BrandElementInterface', $brand);
@@ -25,7 +25,7 @@ class FeedTest extends TestCase {
 
   public function testNewCategoryElement() {
     $pf = new Feed();
-    $name = substr( md5(rand()), 0, 8);
+    $name = substr(md5(uniqid()), 0, 8);
     $id = 'test_category';
     $page_url = 'http://www.example.com/' . $id;
     $category = $pf->newCategory($id, $name, $page_url);
@@ -34,7 +34,7 @@ class FeedTest extends TestCase {
 
   public function testNewProductElement() {
     $pf = new Feed();
-    $name = substr( md5(rand()), 0, 8);
+    $name = substr(md5(uniqid()), 0, 8);
     $id = 'test_product';
     $page_url = 'http://www.example.com/' . $id;
     $image_url = $page_url . '/' . $name . '.jpg';
@@ -66,7 +66,7 @@ class FeedTest extends TestCase {
    * Test saving Feed gzipped XML file.
    */
   public function testSaveFeed() {
-    $test_feed = 'testFeed_' . substr( md5(rand()), 0, 10);
+    $test_feed = 'testFeed_' . substr(md5(uniqid()), 0, 10);
     $pf = new Feed();
     $feed = $pf->newFeed($test_feed);
     vfsStreamWrapper::register();

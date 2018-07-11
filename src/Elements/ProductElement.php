@@ -87,7 +87,6 @@ class ProductElement extends ElementBase implements ProductElementInterface
         $this->setCategoryId($categoryId);
         $this->setPageUrl($pageUrl);
         $this->setImageUrl($imageUrl);
-        return $this;
     }
 
     public function setCategoryId(string $categoryId): ProductElementInterface

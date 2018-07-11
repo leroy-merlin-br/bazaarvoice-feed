@@ -14,12 +14,10 @@ abstract class AbstractFeed implements FeedInterface
      */
     protected $useStage = false;
 
+    /**
+     * @var string
+     */
     protected $baseHost = 'sftp';
-
-    public function __construct()
-    {
-        return $this;
-    }
 
     public function useStage(): self
     {
@@ -43,14 +41,13 @@ abstract class AbstractFeed implements FeedInterface
 
     public function printFeed(FeedElementInterface $feed): string
     {
-        $xmlString = false;
-
         if ($xml = $this->generateFeedXML($feed)) {
             $xmlString = $xml->asXML();
-            $xmlString = str_replace(['<![CDATA[', ']]>'], '', $xmlString);
+
+            return str_replace(['<![CDATA[', ']]>'], '', $xmlString);
         }
 
-        return $xmlString;
+        return '';
     }
 
     public function saveFeed(FeedElementInterface $feed, string $directory, string $filename)
@@ -80,10 +77,8 @@ abstract class AbstractFeed implements FeedInterface
     /**
      * @return bool|string
      */
-    public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', int $sftpPort = 22): bool
+    public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', int $sftpPort = 22)
     {
-        $fileSent = false;
-
         $filename = basename($filePath);
 
         $sftp = new SFTP($this->getHost(), $sftpPort);
@@ -96,15 +91,21 @@ abstract class AbstractFeed implements FeedInterface
                 $rootDirectory = rtrim('/', $sftp->realpath('.'));
                 $fullDirectoryPath = $rootDirectory.'/'.$sftpDirectory;
                 $sftp->chdir($fullDirectoryPath);
-                if ($sftp->put($filename, file_get_contents($filePath, false))) {
-                    $fileSent = true;
+                $content = file_get_contents($filePath, false);
+
+                if (false === $content) {
+                    return false;
+                }
+
+                if ($sftp->put($filename, $content)) {
+                    return true;
                 }
             }
         } catch (Exception $e) {
-            $fileSent = $e->getMessage();
+            return $e->getMessage();
         }
 
-        return $fileSent;
+        return false;
     }
 
     public function getHost()

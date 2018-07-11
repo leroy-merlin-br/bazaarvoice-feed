@@ -13,5 +13,5 @@ interface FeedInterface
 
     public function saveFeed(FeedElementInterface $feed, string $fileLocation, string $fileName);
 
-    public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = '/import-box', int $sftpPort = 22): bool;
+    public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = '/import-box', int $sftpPort = 22);
 }

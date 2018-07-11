@@ -35,7 +35,7 @@ class FeedTest extends TestCase
         $order = $feed->newOrder('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $products);
         $element->addInteraction($order);
         $element->addInteraction($order);
-        $expectedFeed = file_get_contents('tests/fixtures/interaction-feed.xml');
+        $expectedFeed = 'tests/fixtures/interaction-feed.xml';
 
         // Actions
         $result = $feed->printFeed($element);
@@ -50,11 +50,11 @@ class FeedTest extends TestCase
         // Set
         $feed = new ProductFeed();
         $element = $feed->newFeed('ProductFeed');
-        $product = new ProductElement(12345678, 'Product Name', 'ProductCategoryId123', 'http://localhost/12345678', 'http://localhost/12345678/image');
-        $product2 = new ProductElement(12345679, 'Product Name 2', 'ProductCategoryId123', 'http://localhost/12345679', 'http://localhost/12345679/image');
+        $product = new ProductElement('12345678', 'Product Name', 'ProductCategoryId123', 'http://localhost/12345678', 'http://localhost/12345678/image');
+        $product2 = new ProductElement('12345679', 'Product Name 2', 'ProductCategoryId123', 'http://localhost/12345679', 'http://localhost/12345679/image');
         $element->addProduct($product);
         $element->addProduct($product2);
-        $expectedFeed = file_get_contents('tests/fixtures/product-feed.xml');
+        $expectedFeed = 'tests/fixtures/product-feed.xml';
 
         // Actions
         $result = $feed->printFeed($element);
@@ -73,7 +73,7 @@ class FeedTest extends TestCase
         $secondBrand = $feed->newBrand('second-brand', 'Second Brand');
         $element->addBrand($firstBrand);
         $element->addBrand($secondBrand);
-        $expectedFeed = file_get_contents('tests/fixtures/brand-feed.xml');
+        $expectedFeed = 'tests/fixtures/brand-feed.xml';
 
         // Actions
         $result = $feed->printFeed($element);
@@ -93,7 +93,7 @@ class FeedTest extends TestCase
         $secondCategory = $feed->newCategory('second-category', 'Second Category', 'http://localhost/second-category');
         $feedElement->addCategory($firstCategory);
         $feedElement->addCategory($secondCategory);
-        $expectedFeed = file_get_contents('tests/fixtures/category-feed.xml');
+        $expectedFeed = 'tests/fixtures/category-feed.xml';
 
         // Actions
         $result = $feed->printFeed($feedElement);
@@ -104,6 +104,14 @@ class FeedTest extends TestCase
 
     private function assertFeedXmlWasGeneratedCorrectly(string $expectedFeed, string $result)
     {
+        $expectedFeed = file_get_contents($expectedFeed);
+
+        if (false === $expectedFeed) {
+            $this->fail("Couldn't open the given XML file: $expectedFeed");
+
+            return;
+        }
+
         $result = $this->ignoreDateFromXml($result);
         $expectedFeed = $this->ignoreDateFromXml($expectedFeed);
 

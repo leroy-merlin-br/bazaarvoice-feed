@@ -42,7 +42,6 @@ class FeedElement extends ElementBase implements FeedElementInterface
     {
         $this->setName($name);
         $this->setIncremental($incremental);
-        return $this;
     }
 
     public function setIncremental(bool $incremental = true): FeedElementInterface
@@ -190,6 +189,8 @@ class FeedElement extends ElementBase implements FeedElementInterface
 
     private function generateInteractionsXMLArray(): array
     {
+        $element = [];
+        
         if (!count($this->interactions)) {
             return [];
         }
