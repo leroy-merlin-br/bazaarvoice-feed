@@ -9,7 +9,7 @@ before_script:
 
 script:
   - mkdir -p build/logs
-  - phpunit -c phpunit.xml.dist && make coverage
+  - phpunit -c phpunit.xml.dist && make coverage && vendor/bin/phpstan analyze -l 7 src/ tests/
 
 after_script:
   - php vendor/bin/coveralls -v
