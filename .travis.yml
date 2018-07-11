@@ -10,3 +10,6 @@ before_script:
 script:
   - mkdir -p build/logs
   - phpunit -c phpunit.xml.dist && make coverage
+
+after_script:
+  - php vendor/bin/coveralls -v
