@@ -77,7 +77,10 @@ abstract class AbstractFeed implements FeedInterface
         return false;
     }
 
-    public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', string $sftpPort = '22'): bool
+    /**
+     * @return bool|string
+     */
+    public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', int $sftpPort = 22): bool
     {
         $fileSent = false;
 
