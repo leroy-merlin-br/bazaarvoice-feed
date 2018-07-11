@@ -45,6 +45,7 @@ class Feed implements FeedInterface
         return new FeedElement($name, $incremental);
     }
 
+
     public function newProduct(string $externalId, string $name, string $categoryId, string $pageUrl, string $imageUrl): ProductElementInterface
     {
         return new ProductElement($externalId, $name, $categoryId, $pageUrl, $imageUrl);
