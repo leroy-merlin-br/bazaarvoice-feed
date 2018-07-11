@@ -11,22 +11,22 @@ class FeedElement extends ElementBase implements FeedElementInterface
   /**
    * @var array
    */
-    protected $products;
+    protected $products = [];
 
   /**
    * @var array
    */
-    protected $brands;
+    protected $brands = [];
 
   /**
    * @var array
    */
-    protected $categories;
+    protected $categories = [];
 
   /**
    * @var bool
    */
-    protected $incremental;
+    protected $incremental = false;
 
     public function __construct(string $name, bool $incremental = false)
     {
