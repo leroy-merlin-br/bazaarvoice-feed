@@ -1,9 +1,10 @@
 <?php
-namespace BazaarVoice;
+namespace BazaarVoice\Product;
 
 use BazaarVoice\Elements\BrandElementInterface;
 use BazaarVoice\Elements\CategoryElementInterface;
 use BazaarVoice\Elements\ProductElementInterface;
+use BazaarVoice\FeedInterface;
 use Exception;
 use BazaarVoice\Elements\BrandElement;
 use BazaarVoice\Elements\CategoryElement;
@@ -13,11 +14,11 @@ use BazaarVoice\Elements\ProductElement;
 use phpseclib\Net\SFTP;
 use SimpleXMLElement;
 
-class ProductFeed implements ProductFeedInterface
+abstract class AbstractFeed implements FeedInterface
 {
-  /**
-   * @var bool
-   */
+    /**
+     * @var bool
+     */
     protected $useStage = false;
 
     protected $baseHost = 'sftp';
@@ -42,21 +43,6 @@ class ProductFeed implements ProductFeedInterface
     public function newFeed(string $name, bool $incremental = false): FeedElementInterface
     {
         return new FeedElement($name, $incremental);
-    }
-
-    public function newProduct(string $externalId, string $name, string $categoryId, string $pageUrl, string $imageUrl): ProductElementInterface
-    {
-        return new ProductElement($externalId, $name, $categoryId, $pageUrl, $imageUrl);
-    }
-
-    public function newBrand(string $externalId, string $name): BrandElementInterface
-    {
-        return new BrandElement($externalId, $name);
-    }
-
-    public function newCategory(string $externalId, string $name, string $pageUrl): CategoryElementInterface
-    {
-        return new CategoryElement($externalId, $name, $pageUrl);
     }
 
     public function printFeed(FeedElementInterface $feed): string
@@ -98,7 +84,7 @@ class ProductFeed implements ProductFeedInterface
     public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', string $sftpPort = '22'): bool
     {
         $fileSent = false;
-        
+
         $filename = basename($filePath);
 
         $sftp = new SFTP($this->getHost(), $sftpPort);
