@@ -1,16 +1,9 @@
 <?php
-namespace BazaarVoice\Product;
+namespace BazaarVoice;
 
-use BazaarVoice\Elements\BrandElementInterface;
-use BazaarVoice\Elements\CategoryElementInterface;
-use BazaarVoice\Elements\ProductElementInterface;
-use BazaarVoice\FeedInterface;
 use Exception;
-use BazaarVoice\Elements\BrandElement;
-use BazaarVoice\Elements\CategoryElement;
 use BazaarVoice\Elements\FeedElement;
 use BazaarVoice\Elements\FeedElementInterface;
-use BazaarVoice\Elements\ProductElement;
 use phpseclib\Net\SFTP;
 use SimpleXMLElement;
 
