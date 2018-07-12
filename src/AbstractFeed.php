@@ -88,7 +88,7 @@ abstract class AbstractFeed implements FeedInterface
         try {
             if ($sftp->login($sftpUsername, $sftpPassword)) {
                 $rootDirectory = $sftp->realpath('.');
-                $fullDirectoryPath = $rootDirectory.(('/' == substr($rootDirectory, -1)) ? '' : '/').$sftpDirectory;
+                $fullDirectoryPath = $rootDirectory.(('/' === substr($rootDirectory, -1)) ? '' : '/').$sftpDirectory;
                 $sftp->chdir($fullDirectoryPath);
                 if ($sftp->put($filename, file_get_contents($filePath, false))) {
                     $fileSent = true;

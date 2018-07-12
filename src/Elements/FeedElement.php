@@ -23,6 +23,11 @@ class FeedElement extends ElementBase implements FeedElementInterface
    */
     protected $categories = [];
 
+   /**
+    * @var array
+    */
+    protected $interactions = [];
+
   /**
    * @var bool
    */
@@ -105,7 +110,7 @@ class FeedElement extends ElementBase implements FeedElementInterface
                 'xmlns' => 'http://www.bazaarvoice.com/xs/PRR/ProductFeed/'.self::$apiVersion,
                 'name' => $this->name,
                 'incremental' => $this->incremental ? 'true' : 'false',
-                'extractDate' => date('Y-m-d\TH:i:s'),
+                'extractDate' => $this->getCurrentDate(),
             ],
         ];
 
@@ -184,5 +189,10 @@ class FeedElement extends ElementBase implements FeedElementInterface
         }
 
         return $element;
+    }
+
+    private function getCurrentDate(): string
+    {
+        return date('Y-m-d\TH:i:s');
     }
 }
