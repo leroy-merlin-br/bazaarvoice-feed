@@ -13,7 +13,6 @@ class BrandElementTest extends TestCase
         $brandName = 'Some Brand';
         $brandElement = new BrandElement($externalId, $brandName);
         $expectedBrandXMLArray = [
-            '#name' => 'Brand',
             '#children' => [
                 [
                     '#name' => 'ExternalId',
@@ -24,10 +23,11 @@ class BrandElementTest extends TestCase
                     '#value' => 'Some Brand',
                 ]
             ],
+            '#name' => 'Brand',
         ];
 
         $brandXMLArray = $brandElement->generateXMLArray();
 
-        $this->assertEquals($expectedBrandXMLArray, $brandXMLArray);
+        $this->assertSame($expectedBrandXMLArray, $brandXMLArray);
     }
 }

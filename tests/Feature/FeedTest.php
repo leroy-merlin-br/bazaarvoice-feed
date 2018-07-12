@@ -28,7 +28,7 @@ class FeedTest extends TestCase
         $expectedFeed = $this->prepareResultForTesting($expectedFeed);
 
         // Assertions
-        $this->assertEquals($expectedFeed, $result);
+        $this->assertSame($expectedFeed, $result);
     }
 
     /** @test */
@@ -50,7 +50,7 @@ class FeedTest extends TestCase
         $expectedFeed = $this->prepareResultForTesting($expectedFeed);
 
         // Assertions
-        $this->assertEquals($expectedFeed, $result);
+        $this->assertSame($expectedFeed, $result);
     }
 
     /** @test */
@@ -72,7 +72,7 @@ class FeedTest extends TestCase
         $expectedFeed = $this->prepareResultForTesting($expectedFeed);
 
         // Assertions
-        $this->assertEquals($expectedFeed, $result);
+        $this->assertSame($expectedFeed, $result);
     }
 
     /** @test */
@@ -95,7 +95,7 @@ class FeedTest extends TestCase
         $expectedFeed = $this->prepareResultForTesting($expectedFeed);
 
         // Assertions
-        $this->assertEquals($expectedFeed, $result);
+        $this->assertSame($expectedFeed, $result);
     }
 
     public function prepareResultForTesting(string $result): string

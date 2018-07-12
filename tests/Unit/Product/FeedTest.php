@@ -56,7 +56,7 @@ class FeedTest extends TestCase {
       new \SimpleXMLElement($xml_string);
     } catch(\Exception $e) {
     }
-    $this->assertEquals(0,count(libxml_get_errors()));
+    $this->assertCount(0, libxml_get_errors());
     // Tidy up.
     libxml_clear_errors();
     libxml_use_internal_errors($prev);
