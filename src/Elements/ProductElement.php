@@ -75,6 +75,11 @@ class ProductElement extends ElementBase implements ProductElementInterface
    */
     protected $customAttributes;
 
+    /**
+     * @var array
+     */
+    protected $customElements;
+
     public function __construct(string $externalId, string $name, string $categoryId, string $pageUrl, string $imageUrl)
     {
         $this->setExternalId($externalId);
@@ -119,6 +124,13 @@ class ProductElement extends ElementBase implements ProductElementInterface
     public function addPageUrl(string $url, string $locale): ProductElementInterface
     {
         $this->pageUrls[$locale] = $url;
+        return $this;
+    }
+
+    public function addCustomElement(string $key, string $value): ProductElementInterface
+    {
+        $this->customElements[$key] = $value;
+
         return $this;
     }
 
@@ -213,6 +225,12 @@ class ProductElement extends ElementBase implements ProductElementInterface
         }
 
         $element['#children'][] = $this->generateElementXMLArray('ImageUrl', $this->imageUrl);
+
+        if (!empty($this->customElements)) {
+            foreach ($this->customElements as $key => $value) {
+                $element['#children'][] = $this->generateElementXMLArray(ucfirst($key), $value);
+            }
+        }
 
         if (!empty($this->imageUrls)) {
             $element['#children'][] = $this->generateLocaleElementsXMLArray('ImageUrls', 'ImageUrl', $this->imageUrls);
