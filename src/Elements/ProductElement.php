@@ -212,7 +212,6 @@ class ProductElement extends ElementBase implements ProductElementInterface
             $element['#children'][] = $this->generateLocaleElementsXMLArray('ProductPageUrls', 'ProductPageUrl', $this->pageUrls);
         }
 
-
         $element['#children'][] = $this->generateElementXMLArray('ImageUrl', $this->imageUrl);
 
         if (!empty($this->imageUrls)) {

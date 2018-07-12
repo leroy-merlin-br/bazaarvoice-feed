@@ -60,7 +60,6 @@ class FeedTest extends TestCase {
     // Tidy up.
     libxml_clear_errors();
     libxml_use_internal_errors($prev);
-
   }
 
   /**

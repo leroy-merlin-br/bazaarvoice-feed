@@ -1,32 +1,28 @@
 <?php
-namespace BazaarVoice;
+namespace BazaarVoice\Order;
 
+use BazaarVoice\AbstractFeed;
 use BazaarVoice\Elements\FeedElementInterface;
+use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\FeedInterface;
 
-class Feed implements FeedInterface
+class Feed extends AbstractFeed implements FeedInterface
 {
-    public function newFeed(string $name, bool $incremental = false): FeedElementInterface
-    {
-        return new FeedElement($name, $incremental);
-    }
-
-    public function printFeed(FeedElementInterface $feed): string
-    {
-        // TODO: Implement printFeed() method.
-    }
-
-    public function saveFeed(FeedElementInterface $feed, string $fileLocation, string $fileName)
-    {
-        // TODO: Implement saveFeed() method.
-    }
-
-    public function sendFeed(
-        string $filePath,
-        string $sftpUsername,
-        string $sftpPassword,
-        string $sftpDirectory = '/import-box',
-        string $sftpPort = '22'
-    ): bool {
-        // TODO: Implement sendFeed() method.
+    public function newOrder(
+        string $transationDate,
+        string $emailAddress,
+        string $userName,
+        string $userId,
+        string $locale,
+        array $products
+    ): InteractionElement {
+        return new InteractionElement(
+            $transationDate,
+            $emailAddress,
+            $userName,
+            $userId,
+            $locale,
+            $products
+        );
     }
 }
