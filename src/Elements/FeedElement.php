@@ -33,6 +33,11 @@ class FeedElement extends ElementBase implements FeedElementInterface
    */
     protected $incremental = false;
 
+    /**
+     * @var string
+     */
+    protected $namespace;
+
     public function __construct(string $name, bool $incremental = false)
     {
         $this->setName($name);
@@ -43,6 +48,12 @@ class FeedElement extends ElementBase implements FeedElementInterface
     public function setIncremental(bool $incremental = true): FeedElementInterface
     {
         $this->incremental = $incremental;
+        return $this;
+    }
+
+    public function setNamespace(string $namespace): FeedElementInterface
+    {
+        $this->namespace = $namespace;
         return $this;
     }
 
@@ -105,9 +116,11 @@ class FeedElement extends ElementBase implements FeedElementInterface
 
     public function generateXMLArray(): array
     {
+        $xmlNamespace = 'http://www.bazaarvoice.com/xs/PRR/'.$this->namespace.'/'.self::$apiVersion;
+
         $element = [
             '#attributes' => [
-                'xmlns' => 'http://www.bazaarvoice.com/xs/PRR/ProductFeed/'.self::$apiVersion,
+                'xmlns' => $xmlNamespace,
                 'name' => $this->name,
                 'incremental' => $this->incremental ? 'true' : 'false',
                 'extractDate' => date('Y-m-d\TH:i:s'),

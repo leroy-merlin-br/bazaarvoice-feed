@@ -26,4 +26,9 @@ class Feed extends AbstractFeed implements FeedInterface
     {
         return new CategoryElement($externalId, $name, $pageUrl);
     }
+
+    public function getNamespace(): string
+    {
+        return 'ProductFeed';
+    }
 }

@@ -2,7 +2,6 @@
 namespace BazaarVoice\Order;
 
 use BazaarVoice\AbstractFeed;
-use BazaarVoice\Elements\FeedElementInterface;
 use BazaarVoice\Elements\InteractionElement;
 use BazaarVoice\FeedInterface;
 
@@ -24,5 +23,10 @@ class Feed extends AbstractFeed implements FeedInterface
             $locale,
             $products
         );
+    }
+
+    public function getNamespace(): string
+    {
+        return 'PostPurchaseFeed';
     }
 }

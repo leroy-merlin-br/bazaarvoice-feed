@@ -35,7 +35,10 @@ abstract class AbstractFeed implements FeedInterface
 
     public function newFeed(string $name, bool $incremental = false): FeedElementInterface
     {
-        return new FeedElement($name, $incremental);
+        $feedElement = new FeedElement($name, $incremental);
+        $feedElement->setNamespace($this->getNamespace());
+
+        return $feedElement;
     }
 
     public function printFeed(FeedElementInterface $feed): string
