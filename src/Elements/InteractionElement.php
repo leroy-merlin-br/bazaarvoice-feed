@@ -73,8 +73,22 @@ class InteractionElement extends ElementBase
             $this->generateElementXMLArray('UserName', $this->userName),
             $this->generateElementXMLArray('UserID', $this->userId),
             $this->generateElementXMLArray('Locale', $this->locale),
-            $this->generateMultipleElementsXMLArray('Products', $this->products),
+            $this->generateProductsXMLArray(),
         ];
+
+        return $element;
+    }
+
+    private function generateProductsXMLArray(): array
+    {
+        if (!count($this->products)) {
+            return [];
+        }
+
+        $element = parent::generateElementXMLArray('Products');
+        foreach ($this->products as $product) {
+            $element['#children'][] = $product->generateXMLArray();
+        }
 
         return $element;
     }

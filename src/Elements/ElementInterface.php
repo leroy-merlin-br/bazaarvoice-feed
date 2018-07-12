@@ -44,7 +44,7 @@ interface ElementInterface
    *   - #attributes : key/value array of XML attributes for element.
    *   - #children : array of child element arrays.
    */
-    public function generateElementXMLArray(string $name, ?string $value, array $attributes = []): array;
+    public function generateElementXMLArray(string $name, $value, array $attributes = []): array;
 
     /**
    * Builds array for an XML element that represents multiple values.

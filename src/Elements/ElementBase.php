@@ -80,14 +80,14 @@ abstract class ElementBase implements ElementInterface
         return $element;
     }
 
-    public function generateElementXMLArray(string $name, ?string $value = '', array $attributes = []): array
+    public function generateElementXMLArray(string $name, $value = '', array $attributes = []): array
     {
         $element = [
             '#name' => $name,
         ];
 
         if ($value) {
-            $element['#value'] = htmlspecialchars($value);
+            $element['#value'] = is_string($value) ? htmlspecialchars($value) : $value;
         }
 
         if (!empty($attributes)) {

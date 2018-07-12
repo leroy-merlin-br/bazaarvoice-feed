@@ -47,6 +47,12 @@ class FeedElement extends ElementBase implements FeedElementInterface
         return $this;
     }
 
+    public function addInteraction(InteractionElement $interaction): FeedElementInterface
+    {
+        $this->interactions[] = $interaction;
+        return $this;
+    }
+
     public function addBrand(BrandElementInterface $brand): FeedElementInterface
     {
         $this->brands[$brand->getExternalId()] = $brand;
@@ -99,7 +105,7 @@ class FeedElement extends ElementBase implements FeedElementInterface
                 'xmlns' => 'http://www.bazaarvoice.com/xs/PRR/ProductFeed/'.self::$apiVersion,
                 'name' => $this->name,
                 'incremental' => $this->incremental ? 'true' : 'false',
-                'extractDate' => date('Y-m-d').'T'.date('H:i:s'),
+                'extractDate' => date('Y-m-d\TH:i:s'),
             ],
         ];
 
@@ -114,6 +120,12 @@ class FeedElement extends ElementBase implements FeedElementInterface
         if ($products = $this->generateProductsXMLArray()) {
             $element['#children'][] = $products;
         }
+
+        if ($interactions = $this->generateInteractionsXMLArray()) {
+            $element['#children'][] = $interactions;
+        }
+
+
 
         return $element;
     }
@@ -146,7 +158,7 @@ class FeedElement extends ElementBase implements FeedElementInterface
         return $element;
     }
 
-    private function generateProductsXMLArray(): array
+    public function generateProductsXMLArray(): array
     {
         if (!count($this->products)) {
             return [];
@@ -155,6 +167,20 @@ class FeedElement extends ElementBase implements FeedElementInterface
         $element = $this->generateElementXMLArray('Products');
         foreach ($this->products as $product) {
             $element['#children'][] = $product->generateXMLArray();
+        }
+
+        return $element;
+    }
+
+    private function generateInteractionsXMLArray(): array
+    {
+        if (!count($this->interactions)) {
+            return [];
+  }
+
+//        $element = $this->generateElementXMLArray('Interactions');
+        foreach ($this->interactions as $interaction) {
+            $element['#children'][] = $interaction->generateXMLArray();
         }
 
         return $element;

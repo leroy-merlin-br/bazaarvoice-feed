@@ -9,7 +9,7 @@ use BazaarVoice\FeedInterface;
 class Feed extends AbstractFeed implements FeedInterface
 {
     public function newOrder(
-        string $transationDate,
+        string $transactionDate,
         string $emailAddress,
         string $userName,
         string $userId,
@@ -17,7 +17,7 @@ class Feed extends AbstractFeed implements FeedInterface
         array $products
     ): InteractionElement {
         return new InteractionElement(
-            $transationDate,
+            $transactionDate,
             $emailAddress,
             $userName,
             $userId,
