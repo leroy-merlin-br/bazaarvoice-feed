@@ -1,10 +1,11 @@
 <?php
-namespace BazaarVoice\Product;
+namespace Tests\Unit\Product;
 
 use BazaarVoice\Elements\BrandElementInterface;
 use BazaarVoice\Elements\CategoryElement;
 use BazaarVoice\Elements\FeedElementInterface;
 use BazaarVoice\Elements\ProductElement;
+use BazaarVoice\Product\Feed;
 use Exception;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
