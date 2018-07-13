@@ -33,7 +33,6 @@ class CategoryElement extends ElementBase implements CategoryElementInterface
         $this->setExternalId($externalId);
         $this->setName($name);
         $this->setPageUrl($pageUrl);
-        return $this;
     }
 
     public function setParentId(string $parentId): CategoryElementInterface

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Elements;
+namespace BazaarVoice\Elements;
 
 use BazaarVoice\Elements\ProductElement;
 use PHPUnit\Framework\TestCase;

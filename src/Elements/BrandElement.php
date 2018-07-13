@@ -7,7 +7,6 @@ class BrandElement extends ElementBase implements BrandElementInterface
     {
         $this->setExternalId($externalId);
         $this->setName($name);
-        return $this;
     }
 
     public function generateXMLArray(): array
