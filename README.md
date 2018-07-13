@@ -1,12 +1,12 @@
 # Bazaarvoice Product and Interaction feed Library
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/leroy-merlin-br/bazaarvoice-productfeed.svg?style=flat-square)](https://packagist.org/packages/leroy-merlin-br/bazaarvoice-productfeed)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/leroy-merlin-br/bazaarvoice-feed.svg?style=flat-square)](https://packagist.org/packages/leroy-merlin-br/bazaarvoice-productfeed)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/leroy-merlin-br/bazaarvoice-productfeed.svg?style=flat-square)](https://packagist.org/packages/leroy-merlin-br/bazaarvoice-productfeed)
-[![Build Status](https://travis-ci.org/leroy-merlin-br/bazaarvoice-productfeed.svg?branch=master)](https://travis-ci.org/leroy-merlin-br/bazaarvoice-productfeed)
-[![Coverage Status](https://coveralls.io/repos/github/leroy-merlin-br/bazaarvoice-productfeed/badge.svg?branch=master)](https://coveralls.io/github/leroy-merlin-br/bazaarvoice-productfeed?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/leroy-merlin-br/bazaarvoice-feed.svg?style=flat-square)](https://packagist.org/packages/leroy-merlin-br/bazaarvoice-productfeed)
+[![Build Status](https://travis-ci.org/leroy-merlin-br/bazaarvoice-feed.svg?branch=master)](https://travis-ci.org/leroy-merlin-br/bazaarvoice-productfeed)
+[![Coverage Status](https://coveralls.io/repos/github/leroy-merlin-br/bazaarvoice-feed/badge.svg?branch=master)](https://coveralls.io/github/leroy-merlin-br/bazaarvoice-productsfeed?branch=master)
 
-A PHP library for generating and sFTPing XML [Bazaarvoice ProductFeeds](http://labsbp-docsportal.aws.bazaarvoice.com/DataFeeds/Introduction/IntroductionDataFeeds_con.html).
+A PHP library for generating and sFTPing XML [Bazaarvoice Feeds](http://labsbp-docsportal.aws.bazaarvoice.com/DataFeeds/Introduction/IntroductionDataFeeds_con.html).
 
 ## Install
 
