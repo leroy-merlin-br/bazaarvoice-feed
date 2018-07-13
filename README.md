@@ -13,7 +13,7 @@ A PHP library for generating and sFTPing XML [Bazaarvoice ProductFeeds](http://l
 Via Composer
 
 ``` bash
-$ composer require leroy-merlin-br/bazaarvoice-productfeed
+$ composer require leroy-merlin-br/bazaarvoice-feed
 ```
 
 ## Usage
@@ -47,12 +47,12 @@ $feedElement = $productFeed->newFeed('my_feed')
 $productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
-$productElement = $productFeed->newProduct('my_product', 'My Product', 'product_category_123', 'htttp://www.example.com/my-product', 'http://www.example.com/images/my-product.jpg');
+$productElement = $productFeed->newProduct('my_product', 'My Product', 'product_category_123', 'http://www.example.com/my-product', 'http://www.example.com/images/my-product.jpg');
 $feedElement->addProduct($product_element);
 
 $moreProducts = [];
 
-$secondProduct = $productFeed->newProduct('second_product', 'Second Product', 'product_category_456', 'htttp://www.example.com/second-product', 'http://www.example.com/images/second-product.jpg');
+$secondProduct = $productFeed->newProduct('second_product', 'Second Product', 'product_category_456', 'http://www.example.com/second-product', 'http://www.example.com/images/second-product.jpg');
   ->setDescription('This is my second product')
   ->addPageUrl('http://www.example.es/second-product', 'es_SP')
   ->setBrandId('my_brand_123')
@@ -60,7 +60,7 @@ $secondProduct = $productFeed->newProduct('second_product', 'Second Product', 'p
   
 $moreProducts[] = $secondProduct;
 
-$moreProducts[] = $productFeed->newProduct('third_product', 'Third Product', 'product_category_789', 'htttp://www.example.com/third-product', 'http://www.example.com/images/third-product.jpg')
+$moreProducts[] = $productFeed->newProduct('third_product', 'Third Product', 'product_category_789', 'http://www.example.com/third-product', 'http://www.example.com/images/third-product.jpg')
   ->addISBN('123-456-7890')
   ->addPageUrl('http://www.example.co.uk/third-product', 'en_UK')
   ->addCustomAttribute('PRODUCT_FAMILY', 'example_products');
@@ -76,7 +76,7 @@ $feedElement = $productFeed->newFeed('my_feed');
 
 // ...
 
-$categoryElement = $productFeed->newCategory('my_category', 'My Category', 'htttp://www.example.com/my-product');
+$categoryElement = $productFeed->newCategory('my_category', 'My Category', 'http://www.example.com/my-product');
 $feedElement->addCategory($categoryElement);
 
 $moreCategories = [];
