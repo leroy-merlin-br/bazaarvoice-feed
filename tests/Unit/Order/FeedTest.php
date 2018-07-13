@@ -7,28 +7,30 @@ use PHPUnit\Framework\TestCase;
 
 class FeedTest extends TestCase
 {
-    public function testNewOrderElement()
+    /** @test */
+    public function it_generates_a_new_order_element()
     {
         // Set
         $feed = new Feed();
-        $transationDate = '2018-07-11T08:36:47';
+        $transactionDate = '2018-07-11T08:36:47';
         $emailAddress = 'john@example.com';
         $userName = 'John Doe';
         $userId = substr(md5(uniqid()), 0, 8);
         $locale = 'pt_BR';
         $products = [
-            new ProductElement(
-                12345678,
-                'Product Name',
-                'Category',
-                'http://www.example.com/test-product',
-                'http://www.example.com/test-product/product-name.jpg'
-            ),
+            [
+                'id' => 12345678,
+                'name' => 'Product Name',
+                'category' => 'Category',
+                'url' => 'http://www.example.com/test-product',
+                'imageUrl' => 'http://www.example.com/test-product/product-name.jpg',
+                'price' => 29,
+            ],
         ];
 
         // Actions
         $order = $feed->newOrder(
-            $transationDate,
+            $transactionDate,
             $emailAddress,
             $userName,
             $userId,

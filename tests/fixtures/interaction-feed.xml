@@ -13,6 +13,7 @@
                 <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
                 <ProductPageUrl>http://localhost/12345678</ProductPageUrl>
                 <ImageUrl>http://localhost/12345678/image</ImageUrl>
+                <Price>29</Price>
             </Product>
             <Product>
                 <ExternalId>12345679</ExternalId>
@@ -20,6 +21,7 @@
                 <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
                 <ProductPageUrl>http://localhost/12345679</ProductPageUrl>
                 <ImageUrl>http://localhost/12345679/image</ImageUrl>
+                <Price>29</Price>
             </Product>
         </Products>
     </Interaction>
@@ -36,6 +38,7 @@
                 <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
                 <ProductPageUrl>http://localhost/12345678</ProductPageUrl>
                 <ImageUrl>http://localhost/12345678/image</ImageUrl>
+                <Price>29</Price>
             </Product>
             <Product>
                 <ExternalId>12345679</ExternalId>
@@ -43,6 +46,7 @@
                 <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
                 <ProductPageUrl>http://localhost/12345679</ProductPageUrl>
                 <ImageUrl>http://localhost/12345679/image</ImageUrl>
+                <Price>29</Price>
             </Product>
         </Products>
     </Interaction>

@@ -3,6 +3,35 @@ namespace BazaarVoice\Elements;
 
 class InteractionElement extends ElementBase
 {
+    /**
+     * @var string
+     */
+    protected $transactionDate;
+
+    /**
+     * @var string
+     */
+    protected $emailAddress;
+
+    /**
+     * @var string
+     */
+    protected $userName;
+
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
+     * @var string
+     */
+    protected $userId;
+    /**
+     * @var array
+     */
+    protected $products = [];
+
     public function __construct(
         string $transactionDate,
         string $emailAddress,
@@ -56,7 +85,9 @@ class InteractionElement extends ElementBase
 
     public function setProducts(array $products): self
     {
-        $this->products = $products;
+        foreach ($products as $product) {
+            $this->products[] = $this->createNewProductElement($product);
+        }
 
         return $this;
     }
@@ -91,5 +122,18 @@ class InteractionElement extends ElementBase
         }
 
         return $element;
+    }
+
+    private function createNewProductElement(array $product): ProductElementInterface
+    {
+        $productElement = new ProductElement(
+            $product['id'],
+            $product['name'],
+            $product['category'],
+            $product['url'],
+            $product['imageUrl']
+        );
+
+        return $productElement->addCustomElement('price', $product['price']);
     }
 }

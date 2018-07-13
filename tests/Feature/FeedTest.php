@@ -14,9 +14,25 @@ class FeedTest extends TestCase
         // Set
         $feed = new OrderFeed();
         $element = $feed->newFeed('InteractionFeed');
-        $product = new ProductElement(12345678, 'Product Name', 'ProductCategoryId123', 'http://localhost/12345678', 'http://localhost/12345678/image');
-        $product2 = new ProductElement(12345679, 'Product Name 2', 'ProductCategoryId123', 'http://localhost/12345679', 'http://localhost/12345679/image');
-        $order = $feed->newOrder('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', [$product, $product2]);
+        $products = [
+            [
+                'id' => 12345678,
+                'name' => 'Product Name',
+                'category' => 'ProductCategoryId123',
+                'url' => 'http://localhost/12345678',
+                'imageUrl' => 'http://localhost/12345678/image',
+                'price' => 29,
+            ],
+            [
+                'id' => 12345679,
+                'name' => 'Product Name 2',
+                'category' => 'ProductCategoryId123',
+                'url' => 'http://localhost/12345679',
+                'imageUrl' => 'http://localhost/12345679/image',
+                'price' => 29,
+            ],
+        ];
+        $order = $feed->newOrder('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $products);
         $element->addInteraction($order);
         $element->addInteraction($order);
         $expectedFeed = file_get_contents('tests/fixtures/interaction-feed.xml');
