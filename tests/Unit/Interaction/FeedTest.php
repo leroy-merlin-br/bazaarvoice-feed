@@ -1,14 +1,13 @@
 <?php
-namespace BazaarVoice\Order;
+namespace BazaarVoice\Interaction;
 
 use BazaarVoice\Elements\InteractionElement;
-use BazaarVoice\Elements\ProductElement;
 use PHPUnit\Framework\TestCase;
 
 class FeedTest extends TestCase
 {
     /** @test */
-    public function it_generates_a_new_order_element()
+    public function it_generates_a_new_interaction_element()
     {
         // Set
         $feed = new Feed();
@@ -29,7 +28,7 @@ class FeedTest extends TestCase
         ];
 
         // Actions
-        $order = $feed->newOrder(
+        $order = $feed->newInteraction(
             $transactionDate,
             $emailAddress,
             $userName,

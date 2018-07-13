@@ -2,7 +2,7 @@
 namespace Tests\Feature;
 
 use BazaarVoice\Elements\ProductElement;
-use BazaarVoice\Order\Feed as OrderFeed;
+use BazaarVoice\Interaction\Feed as InteractionFeed;
 use BazaarVoice\Product\Feed as ProductFeed;
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +12,7 @@ class FeedTest extends TestCase
     public function it_generates_an_interaction_feed()
     {
         // Set
-        $feed = new OrderFeed();
+        $feed = new InteractionFeed();
         $element = $feed->newFeed('InteractionFeed');
         $products = [
             [
@@ -32,7 +32,7 @@ class FeedTest extends TestCase
                 'price' => 29,
             ],
         ];
-        $order = $feed->newOrder('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $products);
+        $order = $feed->newInteraction('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $products);
         $element->addInteraction($order);
         $element->addInteraction($order);
         $expectedFeed = file_get_contents('tests/fixtures/interaction-feed.xml');
