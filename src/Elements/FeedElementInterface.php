@@ -15,5 +15,7 @@ interface FeedElementInterface extends ElementInterface
 
     public function addCategories(array $categories): FeedElementInterface;
 
+    public function addInteraction(InteractionElement $interaction): FeedElementInterface;
+
     public function addBrands(array $brands): FeedElementInterface;
 }
