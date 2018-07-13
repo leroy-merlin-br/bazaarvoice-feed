@@ -14,7 +14,6 @@ class CategoryElementTest extends TestCase
         $categoryUrl = 'https://example.com/some-category';
         $categoryElement = new CategoryElement($externalId, $categoryName, $categoryUrl);
         $expectedCategoryXMLArray = [
-            '#name' => 'Category',
             '#children' => [
                 [
                     '#name' => 'ExternalId',
@@ -29,10 +28,11 @@ class CategoryElementTest extends TestCase
                     '#value' => 'https://example.com/some-category',
                 ]
             ],
+            '#name' => 'Category',
         ];
 
         $categoryXMLArray = $categoryElement->generateXMLArray();
 
-        $this->assertEquals($expectedCategoryXMLArray, $categoryXMLArray);
+        $this->assertSame($expectedCategoryXMLArray, $categoryXMLArray);
     }
 }

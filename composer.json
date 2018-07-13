@@ -18,7 +18,7 @@
   },
   "require-dev": {
     "ext-curl": "*",
-    "phpunit/phpunit": "^5.7",
+    "phpunit/phpunit": "^7.2",
     "satooshi/php-coveralls": "^1.0",
     "mikey179/vfsStream": "~1"
   },

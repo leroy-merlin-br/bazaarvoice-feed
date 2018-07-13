@@ -31,7 +31,7 @@ class ElementBaseTest extends TestCase
         $baseElementXMLArray = $elementBase->generateXMLArray();
 
         // Assertions
-        $this->assertEquals($expectedBaseElementXMLArray, $baseElementXMLArray);
+        $this->assertSame($expectedBaseElementXMLArray, $baseElementXMLArray);
     }
 
     /** @test */
@@ -55,7 +55,7 @@ class ElementBaseTest extends TestCase
         $baseElementXMLArray = $elementBase->generateElementXMLArray($elementName, $elementValue, $elementAttributes);
 
         // Assertions
-        $this->assertEquals($expectedElementXMLArray, $baseElementXMLArray);
+        $this->assertSame($expectedElementXMLArray, $baseElementXMLArray);
     }
 
     /** @test */
@@ -86,7 +86,7 @@ class ElementBaseTest extends TestCase
             ->generateMultipleElementsXMLArray($elementName,$elementSingleName,$elementAttributes);
 
         // Assertions
-        $this->assertEquals($expectedElementXMLArray, $baseElementXMLArray);
+        $this->assertSame($expectedElementXMLArray, $baseElementXMLArray);
     }
 
     /** @test */

@@ -1,23 +1,22 @@
 <?php
-namespace Tests;
+namespace BazaarVoice\Product;
 
-use BazaarVoice\ProductFeed;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;
 use PHPUnit\Framework\TestCase;
 
-class ProductFeedTest extends TestCase {
+class FeedTest extends TestCase {
 
   public function testNewFeedElement() {
-    $pf = new ProductFeed();
+    $pf = new Feed();
     $name = substr( md5(rand()), 0, 8);
     $feed = $pf->newFeed($name);
     $this->assertInstanceOf('BazaarVoice\Elements\FeedElementInterface', $feed);
   }
 
   public function testNewBrandElement() {
-    $pf = new ProductFeed();
+    $pf = new Feed();
     $name = substr( md5(rand()), 0, 8);
     $id = 'test_brand';
     $brand = $pf->newBrand($id, $name);
@@ -25,7 +24,7 @@ class ProductFeedTest extends TestCase {
   }
 
   public function testNewCategoryElement() {
-    $pf = new ProductFeed();
+    $pf = new Feed();
     $name = substr( md5(rand()), 0, 8);
     $id = 'test_category';
     $page_url = 'http://www.example.com/' . $id;
@@ -34,7 +33,7 @@ class ProductFeedTest extends TestCase {
   }
 
   public function testNewProductElement() {
-    $pf = new ProductFeed();
+    $pf = new Feed();
     $name = substr( md5(rand()), 0, 8);
     $id = 'test_product';
     $page_url = 'http://www.example.com/' . $id;
@@ -47,7 +46,7 @@ class ProductFeedTest extends TestCase {
    * Test generating valid XML document.
    */
   public function testPrintFeed() {
-    $pf = new ProductFeed();
+    $pf = new Feed();
     $feed = $pf->newFeed('testFeed');
     $xml_string = $pf->printFeed($feed);
     new \SimpleXMLElement($xml_string);
@@ -57,19 +56,18 @@ class ProductFeedTest extends TestCase {
       new \SimpleXMLElement($xml_string);
     } catch(\Exception $e) {
     }
-    $this->assertEquals(0,count(libxml_get_errors()));
+    $this->assertCount(0, libxml_get_errors());
     // Tidy up.
     libxml_clear_errors();
     libxml_use_internal_errors($prev);
-
   }
 
   /**
-   * Test saving ProductFeed gzipped XML file.
+   * Test saving Feed gzipped XML file.
    */
   public function testSaveFeed() {
     $test_feed = 'testFeed_' . substr( md5(rand()), 0, 10);
-    $pf = new ProductFeed();
+    $pf = new Feed();
     $feed = $pf->newFeed($test_feed);
     vfsStreamWrapper::register();
     vfsStreamWrapper::setRoot(new vfsStreamDirectory($test_feed . '_dir'));

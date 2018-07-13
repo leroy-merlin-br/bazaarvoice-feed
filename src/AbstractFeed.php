@@ -1,23 +1,17 @@
 <?php
 namespace BazaarVoice;
 
-use BazaarVoice\Elements\BrandElementInterface;
-use BazaarVoice\Elements\CategoryElementInterface;
-use BazaarVoice\Elements\ProductElementInterface;
 use Exception;
-use BazaarVoice\Elements\BrandElement;
-use BazaarVoice\Elements\CategoryElement;
 use BazaarVoice\Elements\FeedElement;
 use BazaarVoice\Elements\FeedElementInterface;
-use BazaarVoice\Elements\ProductElement;
 use phpseclib\Net\SFTP;
 use SimpleXMLElement;
 
-class ProductFeed implements ProductFeedInterface
+abstract class AbstractFeed implements FeedInterface
 {
-  /**
-   * @var bool
-   */
+    /**
+     * @var bool
+     */
     protected $useStage = false;
 
     protected $baseHost = 'sftp';
@@ -41,22 +35,10 @@ class ProductFeed implements ProductFeedInterface
 
     public function newFeed(string $name, bool $incremental = false): FeedElementInterface
     {
-        return new FeedElement($name, $incremental);
-    }
+        $feedElement = new FeedElement($name, $incremental);
+        $feedElement->setNamespace($this->getNamespace());
 
-    public function newProduct(string $externalId, string $name, string $categoryId, string $pageUrl, string $imageUrl): ProductElementInterface
-    {
-        return new ProductElement($externalId, $name, $categoryId, $pageUrl, $imageUrl);
-    }
-
-    public function newBrand(string $externalId, string $name): BrandElementInterface
-    {
-        return new BrandElement($externalId, $name);
-    }
-
-    public function newCategory(string $externalId, string $name, string $pageUrl): CategoryElementInterface
-    {
-        return new CategoryElement($externalId, $name, $pageUrl);
+        return $feedElement;
     }
 
     public function printFeed(FeedElementInterface $feed): string
@@ -98,7 +80,7 @@ class ProductFeed implements ProductFeedInterface
     public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', string $sftpPort = '22'): bool
     {
         $fileSent = false;
-        
+
         $filename = basename($filePath);
 
         $sftp = new SFTP($this->getHost(), $sftpPort);
@@ -108,8 +90,8 @@ class ProductFeed implements ProductFeedInterface
 
         try {
             if ($sftp->login($sftpUsername, $sftpPassword)) {
-                $rootDirectory = $sftp->realpath('.');
-                $fullDirectoryPath = $rootDirectory.(('/' == substr($rootDirectory, -1)) ? '' : '/').$sftpDirectory;
+                $rootDirectory = rtrim('/', $sftp->realpath('.'));
+                $fullDirectoryPath = $rootDirectory.'/'.$sftpDirectory;
                 $sftp->chdir($fullDirectoryPath);
                 if ($sftp->put($filename, file_get_contents($filePath, false))) {
                     $fileSent = true;
