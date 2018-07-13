@@ -18,7 +18,7 @@ class FeedTest extends TestCase
         $locale = 'pt_BR';
         $products = [
             new ProductElement(
-                substr(md5(uniqid()), 0, 8),
+                12345678,
                 'Product Name',
                 'Category',
                 'http://www.example.com/test-product',
