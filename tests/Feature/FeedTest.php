@@ -24,11 +24,8 @@ class FeedTest extends TestCase
         // Actions
         $result = $feed->printFeed($element);
 
-        $result = $this->prepareResultForTesting($result);
-        $expectedFeed = $this->prepareResultForTesting($expectedFeed);
-
         // Assertions
-        $this->assertXmlStringEqualsXmlString($expectedFeed, $result);
+        $this->assertFeedXmlWasGeneratedCorrectly($expectedFeed, $result);
     }
 
     /** @test */
@@ -46,11 +43,8 @@ class FeedTest extends TestCase
         // Actions
         $result = $feed->printFeed($element);
 
-        $result = $this->prepareResultForTesting($result);
-        $expectedFeed = $this->prepareResultForTesting($expectedFeed);
-
         // Assertions
-        $this->assertXmlStringEqualsXmlString($expectedFeed, $result);
+        $this->assertFeedXmlWasGeneratedCorrectly($expectedFeed, $result);
     }
 
     /** @test */
@@ -68,11 +62,8 @@ class FeedTest extends TestCase
         // Actions
         $result = $feed->printFeed($element);
 
-        $result = $this->prepareResultForTesting($result);
-        $expectedFeed = $this->prepareResultForTesting($expectedFeed);
-
         // Assertions
-        $this->assertXmlStringEqualsXmlString($expectedFeed, $result);
+        $this->assertFeedXmlWasGeneratedCorrectly($expectedFeed, $result);
     }
 
     /** @test */
@@ -91,14 +82,19 @@ class FeedTest extends TestCase
         // Actions
         $result = $feed->printFeed($feedElement);
 
-        $result = $this->prepareResultForTesting($result);
-        $expectedFeed = $this->prepareResultForTesting($expectedFeed);
-
         // Assertions
+        $this->assertFeedXmlWasGeneratedCorrectly($expectedFeed, $result);
+    }
+
+    private function assertFeedXmlWasGeneratedCorrectly(string $expectedFeed, string $result)
+    {
+        $result = $this->ignoreDateFromXml($result);
+        $expectedFeed = $this->ignoreDateFromXml($expectedFeed);
+
         $this->assertXmlStringEqualsXmlString($expectedFeed, $result);
     }
 
-    public function prepareResultForTesting(string $result): string
+    private function ignoreDateFromXml(string $result): string
     {
         $firstPos = strpos($result, 'extractDate="');
 
