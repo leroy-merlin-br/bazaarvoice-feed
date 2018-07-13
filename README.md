@@ -1,4 +1,4 @@
-# Bazaarvoice Productfeed Library
+# Bazaarvoice Product and Interaction feed Library
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/leroy-merlin-br/bazaarvoice-productfeed.svg?style=flat-square)](https://packagist.org/packages/leroy-merlin-br/bazaarvoice-productfeed)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -20,23 +20,23 @@ $ composer require leroy-merlin-br/bazaarvoice-productfeed
 
 ### Creating a Feed.
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 ```
 
 ### Creating a feedElement
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 ```
 
 ### Creating an Incremental feed.
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed', true);
 ```
 
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed')
   ->setIncremental(true);
 ```
@@ -44,7 +44,7 @@ $feedElement = $productFeed->newFeed('my_feed')
 
 ### Creating products and adding them to a feed.
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 $productElement = $productFeed->newProduct('my_product', 'My Product', 'product_category_123', 'htttp://www.example.com/my-product', 'http://www.example.com/images/my-product.jpg');
@@ -71,7 +71,7 @@ $feedElement->addProducts($moreProducts);
 
 ### Creating categories and adding them to a feed.
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 // ...
@@ -94,7 +94,7 @@ $feedElement->addCategories($moreCategories);
 
 ### Creating brands and adding them to a feed.
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 // ...
@@ -116,9 +116,32 @@ $feedElement->addBrands($moreBrands);
 
 ```
 
+### Creating interactions (orders) and adding them to a feed.
+``` php
+$orderFeed = new \BazaarVoice\Interaction\Feed();
+$feedElement = $orderFeed->newFeed('Order feed');
+
+$orderProducts = [
+    [
+        'id' => 'productId123',
+        'name' => 'Product name',
+        'category' => 'Product Category',
+        'url' => 'http://product-url',
+        'imageUrl' => 'http://image-url',
+        'price' => 29,
+    ],
+];
+$order = $feed->newInteraction('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $orderProducts);
+
+$feedElement->addInteraction($orderFeed);
+
+// $orderFeed->printFeed();
+
+```
+
 ### Print ProductFeed XML string
 ``` php
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 // ... add products, brands & categories ...
@@ -129,7 +152,7 @@ print $productFeed->printFeed($feedElement);
 ### Saving Productfeed as an XML file.
 ``` php
 
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 // ... add products, brands & categories ...
@@ -140,7 +163,7 @@ $productFeed->saveFeed($feedElement, 'path/to/dir', 'my_feed_XYZ');
 ### SFTP ProductFeed to BazaarVoice Production.
 ``` php
 
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 // ... add products, brands & categories ...
@@ -158,7 +181,7 @@ if ($feedFile = $productFeed->saveFeed($feedElement, 'path/to/dir', 'my_feed_XYZ
 #### SFTP ProductFeed to Bazaarvoice Staging.
 ``` php
 
-$productFeed = new \BazaarVoice\ProductFeed();
+$productFeed = new \BazaarVoice\Product\Feed();
 $feedElement = $productFeed->newFeed('my_feed');
 
 // ... add products, brands & categories ...
