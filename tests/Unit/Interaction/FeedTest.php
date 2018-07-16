@@ -22,7 +22,6 @@ class FeedTest extends TestCase
             [
                 'id' => 12345678,
                 'name' => 'Product Name',
-                'imageUrl' => 'http://www.example.com/test-product/product-name.jpg',
                 'price' => 29,
             ],
         ];
