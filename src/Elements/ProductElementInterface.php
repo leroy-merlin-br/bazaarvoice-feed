@@ -32,4 +32,6 @@ interface ProductElementInterface extends ElementInterface
     public function addISBN(string $isbn): ProductElementInterface;
 
     public function addCustomAttribute(string $attributeId, $value): ProductElementInterface;
+
+    public function addCustomElement(string $key, string $value): ProductElementInterface;
 }
