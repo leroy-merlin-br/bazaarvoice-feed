@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature;
+namespace Tests\Unit\Elements;
 
 use BazaarVoice\Elements\BrandElement;
 use PHPUnit\Framework\TestCase;

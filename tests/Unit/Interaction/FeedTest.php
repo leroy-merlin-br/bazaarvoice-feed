@@ -1,7 +1,8 @@
 <?php
-namespace BazaarVoice\Interaction;
+namespace Tests\Unit\Interaction;
 
 use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\Interaction\Feed;
 use PHPUnit\Framework\TestCase;
 
 class FeedTest extends TestCase
