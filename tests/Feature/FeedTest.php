@@ -41,7 +41,7 @@ class FeedTest extends TestCase
         $result = $feed->printFeed($element);
 
         // Assertions
-        $this->assertFeedXmlWasGeneratedCorrectly($expectedFeed, $result);
+        $this->assertXmlStringEqualsXmlString($expectedFeed, $result);
     }
 
     /** @test */

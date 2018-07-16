@@ -7,8 +7,6 @@ interface FeedInterface
 {
     public function newFeed(string $name, bool $incremental = false): FeedElementInterface;
 
-    public function getNamespace(): string;
-
     public function printFeed(FeedElementInterface $feed): string;
 
     public function saveFeed(FeedElementInterface $feed, string $fileLocation, string $fileName);

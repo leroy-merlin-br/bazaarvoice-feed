@@ -3,6 +3,8 @@ namespace BazaarVoice\Interaction;
 
 use BazaarVoice\AbstractFeed;
 use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\Elements\FeedElementInterface;
+use BazaarVoice\Elements\InteractionFeedElement;
 use BazaarVoice\FeedInterface;
 
 class Feed extends AbstractFeed implements FeedInterface
@@ -25,8 +27,8 @@ class Feed extends AbstractFeed implements FeedInterface
         );
     }
 
-    public function getNamespace(): string
+    public function newFeed(string $name, bool $incremental = false): FeedElementInterface
     {
-        return 'PostPurchaseFeed';
+        return new InteractionFeedElement($name, $incremental);
     }
 }
