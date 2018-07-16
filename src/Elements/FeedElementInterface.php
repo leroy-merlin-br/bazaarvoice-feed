@@ -18,4 +18,8 @@ interface FeedElementInterface extends ElementInterface
     public function addInteraction(InteractionElement $interaction): FeedElementInterface;
 
     public function addBrands(array $brands): FeedElementInterface;
+
+    public function getBasicXmlAttributes(): array;
+
+    public function getNamespace(): string;
 }
