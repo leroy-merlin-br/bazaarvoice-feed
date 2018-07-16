@@ -1,5 +1,8 @@
 <?php
-namespace BazaarVoice\Elements;
+namespace BazaarVoice\Elements\Interaction;
+
+use BazaarVoice\Elements\FeedElement;
+use BazaarVoice\Elements\FeedElementInterface;
 
 class InteractionFeedElement extends FeedElement implements FeedElementInterface
 {

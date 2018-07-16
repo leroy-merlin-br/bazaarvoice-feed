@@ -1,6 +1,8 @@
 <?php
 namespace BazaarVoice\Elements;
 
+use BazaarVoice\Elements\Interaction\ProductElement;
+
 class InteractionElement extends ElementBase
 {
     /**
@@ -124,16 +126,8 @@ class InteractionElement extends ElementBase
         return $element;
     }
 
-    private function createNewProductElement(array $product): ProductElementInterface
+    private function createNewProductElement(array $product): ProductElement
     {
-        $productElement = new ProductElement(
-            $product['id'],
-            $product['name'],
-            $product['category'],
-            $product['url'],
-            $product['imageUrl']
-        );
-
-        return $productElement->addCustomElement('price', $product['price']);
+        return new ProductElement($product['id'], $product['name'], $product['price']);
     }
 }
