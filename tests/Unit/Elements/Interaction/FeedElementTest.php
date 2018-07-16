@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Elements;
+namespace Tests\Unit\Elements\Interaction;
 
 use BazaarVoice\Elements\Interaction\FeedElement;
 use BazaarVoice\Elements\FeedElement as BaseFeedElement;
