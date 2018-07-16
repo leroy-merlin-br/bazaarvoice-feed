@@ -6,11 +6,12 @@ use BazaarVoice\Elements\InteractionElement;
 use BazaarVoice\Elements\FeedElementInterface;
 use BazaarVoice\Elements\InteractionFeedElement;
 use BazaarVoice\FeedInterface;
+use DateTime;
 
 class Feed extends AbstractFeed implements FeedInterface
 {
     public function newInteraction(
-        string $transactionDate,
+        DateTime $transactionDate,
         string $emailAddress,
         string $userName,
         string $userId,
@@ -18,7 +19,7 @@ class Feed extends AbstractFeed implements FeedInterface
         array $products
     ): InteractionElement {
         return new InteractionElement(
-            $transactionDate,
+            $transactionDate->format('Y-m-d\TH:i:s'),
             $emailAddress,
             $userName,
             $userId,

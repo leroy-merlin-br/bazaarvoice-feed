@@ -3,6 +3,7 @@ namespace Tests\Unit\Interaction;
 
 use BazaarVoice\Elements\InteractionElement;
 use BazaarVoice\Interaction\Feed;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class FeedTest extends TestCase
@@ -12,7 +13,7 @@ class FeedTest extends TestCase
     {
         // Set
         $feed = new Feed();
-        $transactionDate = '2018-07-11T08:36:47';
+        $transactionDate = new DateTime('1987-03-22 01:01:01');
         $emailAddress = 'john@example.com';
         $userName = 'John Doe';
         $userId = substr(md5(uniqid()), 0, 8);

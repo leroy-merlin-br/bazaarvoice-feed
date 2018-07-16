@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Feed xmlns="http://www.bazaarvoice.com/xs/PRR/PostPurchaseFeed/5.6">
     <Interaction>
-        <TransactionDate>22/03/1987</TransactionDate>
+        <TransactionDate>1987-03-22T01:01:01</TransactionDate>
         <EmailAddress>john@doe.com</EmailAddress>
         <UserName>John Doe</UserName>
         <UserID>userId123</UserID>
@@ -26,7 +26,7 @@
         </Products>
     </Interaction>
     <Interaction>
-        <TransactionDate>22/03/1987</TransactionDate>
+        <TransactionDate>1987-03-22T01:01:01</TransactionDate>
         <EmailAddress>john@doe.com</EmailAddress>
         <UserName>John Doe</UserName>
         <UserID>userId123</UserID>
