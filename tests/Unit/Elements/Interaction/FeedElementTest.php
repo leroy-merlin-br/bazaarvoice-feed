@@ -1,27 +1,27 @@
 <?php
 namespace Tests\Unit\Elements;
 
-use BazaarVoice\Elements\FeedElement;
-use BazaarVoice\Elements\InteractionFeedElement;
+use BazaarVoice\Elements\Interaction\FeedElement;
+use BazaarVoice\Elements\FeedElement as BaseFeedElement;
 use PHPUnit\Framework\TestCase;
 
-class InteractionFeedElementTest extends TestCase
+class FeedElementTest extends TestCase
 {
     /** @test */
     public function it_extends_base_feed_element()
     {
         // Set
-        $interactionFeed = new InteractionFeedElement('interaction');
+        $interactionFeed = new FeedElement('interaction');
 
         // Assertions
-        $this->assertInstanceOf(FeedElement::class, $interactionFeed);
+        $this->assertInstanceOf(BaseFeedElement::class, $interactionFeed);
     }
 
     /** @test */
     public function it_overrides_some_methods_of_feed_element()
     {
         // Set
-        $interactionFeed = new InteractionFeedElement('interaction');
+        $interactionFeed = new FeedElement('interaction');
         $expectedNamespace = 'http://www.bazaarvoice.com/xs/PRR/PostPurchaseFeed/5.6';
         $expectedAttributes = [
             'xmlns' => $expectedNamespace,

@@ -1,7 +1,7 @@
 <?php
-namespace BazaarVoice\Elements;
+namespace BazaarVoice\Elements\Interaction;
 
-use BazaarVoice\Elements\Interaction\ProductElement;
+use BazaarVoice\Elements\ElementBase;
 
 class InteractionElement extends ElementBase
 {

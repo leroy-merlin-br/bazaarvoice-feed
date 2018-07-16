@@ -2,9 +2,9 @@
 namespace BazaarVoice\Interaction;
 
 use BazaarVoice\AbstractFeed;
-use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\Elements\Interaction\FeedElement;
+use BazaarVoice\Elements\Interaction\InteractionElement;
 use BazaarVoice\Elements\FeedElementInterface;
-use BazaarVoice\Elements\InteractionFeedElement;
 use BazaarVoice\FeedInterface;
 use DateTime;
 
@@ -30,6 +30,6 @@ class Feed extends AbstractFeed implements FeedInterface
 
     public function newFeed(string $name, bool $incremental = false): FeedElementInterface
     {
-        return new InteractionFeedElement($name, $incremental);
+        return new FeedElement($name, $incremental);
     }
 }

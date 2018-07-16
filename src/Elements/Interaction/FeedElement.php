@@ -1,10 +1,10 @@
 <?php
 namespace BazaarVoice\Elements\Interaction;
 
-use BazaarVoice\Elements\FeedElement;
+use BazaarVoice\Elements\FeedElement as BaseFeedElement;
 use BazaarVoice\Elements\FeedElementInterface;
 
-class InteractionFeedElement extends FeedElement implements FeedElementInterface
+class FeedElement extends BaseFeedElement implements FeedElementInterface
 {
     public function getBasicXmlAttributes(): array
     {

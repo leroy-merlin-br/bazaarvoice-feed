@@ -1,7 +1,7 @@
 <?php
 namespace Tests\Unit\Interaction;
 
-use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\Elements\Interaction\InteractionElement;
 use BazaarVoice\Interaction\Feed;
 use DateTime;
 use PHPUnit\Framework\TestCase;

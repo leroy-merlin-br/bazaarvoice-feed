@@ -1,6 +1,8 @@
 <?php
 namespace BazaarVoice\Elements;
 
+use BazaarVoice\Elements\Interaction\InteractionElement;
+
 interface FeedElementInterface extends ElementInterface
 {
     public function setIncremental(bool $incremental = true): FeedElementInterface;
