@@ -4,6 +4,7 @@ namespace Tests\Feature;
 use BazaarVoice\Elements\ProductElement;
 use BazaarVoice\Interaction\Feed as InteractionFeed;
 use BazaarVoice\Product\Feed as ProductFeed;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class FeedTest extends TestCase
@@ -13,6 +14,7 @@ class FeedTest extends TestCase
     {
         // Set
         $feed = new InteractionFeed();
+        $transactionDate = new DateTime('1987-03-22 01:01:01');
         $element = $feed->newFeed('InteractionFeed');
         $products = [
             [
@@ -32,7 +34,7 @@ class FeedTest extends TestCase
                 'price' => 29,
             ],
         ];
-        $order = $feed->newInteraction('22/03/1987', 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $products);
+        $order = $feed->newInteraction($transactionDate, 'john@doe.com', 'John Doe', 'userId123', 'pt_BR', $products);
         $element->addInteraction($order);
         $element->addInteraction($order);
         $expectedFeed = file_get_contents('tests/fixtures/interaction-feed.xml');
@@ -41,7 +43,7 @@ class FeedTest extends TestCase
         $result = $feed->printFeed($element);
 
         // Assertions
-        $this->assertFeedXmlWasGeneratedCorrectly($expectedFeed, $result);
+        $this->assertXmlStringEqualsXmlString($expectedFeed, $result);
     }
 
     /** @test */

@@ -2,13 +2,16 @@
 namespace BazaarVoice\Interaction;
 
 use BazaarVoice\AbstractFeed;
-use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\Elements\Interaction\FeedElement;
+use BazaarVoice\Elements\Interaction\InteractionElement;
+use BazaarVoice\Elements\FeedElementInterface;
 use BazaarVoice\FeedInterface;
+use DateTime;
 
 class Feed extends AbstractFeed implements FeedInterface
 {
     public function newInteraction(
-        string $transactionDate,
+        DateTime $transactionDate,
         string $emailAddress,
         string $userName,
         string $userId,
@@ -16,7 +19,7 @@ class Feed extends AbstractFeed implements FeedInterface
         array $products
     ): InteractionElement {
         return new InteractionElement(
-            $transactionDate,
+            $transactionDate->format('Y-m-d\TH:i:s'),
             $emailAddress,
             $userName,
             $userId,
@@ -25,8 +28,8 @@ class Feed extends AbstractFeed implements FeedInterface
         );
     }
 
-    public function getNamespace(): string
+    public function newFeed(string $name, bool $incremental = false): FeedElementInterface
     {
-        return 'PostPurchaseFeed';
+        return new FeedElement($name, $incremental);
     }
 }

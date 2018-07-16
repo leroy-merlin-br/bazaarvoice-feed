@@ -1,8 +1,9 @@
 <?php
 namespace Tests\Unit\Interaction;
 
-use BazaarVoice\Elements\InteractionElement;
+use BazaarVoice\Elements\Interaction\InteractionElement;
 use BazaarVoice\Interaction\Feed;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class FeedTest extends TestCase
@@ -12,7 +13,7 @@ class FeedTest extends TestCase
     {
         // Set
         $feed = new Feed();
-        $transactionDate = '2018-07-11T08:36:47';
+        $transactionDate = new DateTime('1987-03-22 01:01:01');
         $emailAddress = 'john@example.com';
         $userName = 'John Doe';
         $userId = substr(md5(uniqid()), 0, 8);
@@ -21,9 +22,6 @@ class FeedTest extends TestCase
             [
                 'id' => 12345678,
                 'name' => 'Product Name',
-                'category' => 'Category',
-                'url' => 'http://www.example.com/test-product',
-                'imageUrl' => 'http://www.example.com/test-product/product-name.jpg',
                 'price' => 29,
             ],
         ];

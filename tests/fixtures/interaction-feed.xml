@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Feed xmlns="http://www.bazaarvoice.com/xs/PRR/PostPurchaseFeed/5.6" name="InteractionFeed" incremental="false" extractDate="2018-07-12T14:28:52">
+<Feed xmlns="http://www.bazaarvoice.com/xs/PRR/PostPurchaseFeed/5.6">
     <Interaction>
-        <TransactionDate>22/03/1987</TransactionDate>
+        <TransactionDate>1987-03-22T01:01:01</TransactionDate>
         <EmailAddress>john@doe.com</EmailAddress>
         <UserName>John Doe</UserName>
         <UserID>userId123</UserID>
@@ -10,23 +10,17 @@
             <Product>
                 <ExternalId>12345678</ExternalId>
                 <Name>Product Name</Name>
-                <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
-                <ProductPageUrl>http://localhost/12345678</ProductPageUrl>
-                <ImageUrl>http://localhost/12345678/image</ImageUrl>
                 <Price>29</Price>
             </Product>
             <Product>
                 <ExternalId>12345679</ExternalId>
                 <Name>Product Name 2</Name>
-                <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
-                <ProductPageUrl>http://localhost/12345679</ProductPageUrl>
-                <ImageUrl>http://localhost/12345679/image</ImageUrl>
                 <Price>29</Price>
             </Product>
         </Products>
     </Interaction>
     <Interaction>
-        <TransactionDate>22/03/1987</TransactionDate>
+        <TransactionDate>1987-03-22T01:01:01</TransactionDate>
         <EmailAddress>john@doe.com</EmailAddress>
         <UserName>John Doe</UserName>
         <UserID>userId123</UserID>
@@ -35,17 +29,11 @@
             <Product>
                 <ExternalId>12345678</ExternalId>
                 <Name>Product Name</Name>
-                <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
-                <ProductPageUrl>http://localhost/12345678</ProductPageUrl>
-                <ImageUrl>http://localhost/12345678/image</ImageUrl>
                 <Price>29</Price>
             </Product>
             <Product>
                 <ExternalId>12345679</ExternalId>
                 <Name>Product Name 2</Name>
-                <CategoryExternalId>ProductCategoryId123</CategoryExternalId>
-                <ProductPageUrl>http://localhost/12345679</ProductPageUrl>
-                <ImageUrl>http://localhost/12345679/image</ImageUrl>
                 <Price>29</Price>
             </Product>
         </Products>

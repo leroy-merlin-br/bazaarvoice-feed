@@ -1,6 +1,8 @@
 <?php
 namespace BazaarVoice\Elements;
 
+use BazaarVoice\Elements\Interaction\InteractionElement;
+
 interface FeedElementInterface extends ElementInterface
 {
     public function setIncremental(bool $incremental = true): FeedElementInterface;
@@ -18,4 +20,8 @@ interface FeedElementInterface extends ElementInterface
     public function addInteraction(InteractionElement $interaction): FeedElementInterface;
 
     public function addBrands(array $brands): FeedElementInterface;
+
+    public function getBasicXmlAttributes(): array;
+
+    public function getNamespace(): string;
 }

@@ -1,6 +1,8 @@
 <?php
 namespace BazaarVoice\Elements;
 
+use BazaarVoice\Elements\Interaction\InteractionElement;
+
 class FeedElement extends ElementBase implements FeedElementInterface
 {
   /**
@@ -116,15 +118,8 @@ class FeedElement extends ElementBase implements FeedElementInterface
 
     public function generateXMLArray(): array
     {
-        $xmlNamespace = 'http://www.bazaarvoice.com/xs/PRR/'.$this->namespace.'/'.self::$apiVersion;
-
         $element = [
-            '#attributes' => [
-                'xmlns' => $xmlNamespace,
-                'name' => $this->name,
-                'incremental' => $this->incremental ? 'true' : 'false',
-                'extractDate' => date('Y-m-d\TH:i:s'),
-            ],
+            '#attributes' => $this->getBasicXmlAttributes(),
         ];
 
         if ($brands = $this->generateBrandsXMLArray()) {
@@ -186,6 +181,21 @@ class FeedElement extends ElementBase implements FeedElementInterface
         }
 
         return $element;
+    }
+
+    public function getBasicXmlAttributes(): array
+    {
+        return [
+            'xmlns' => $this->getNamespace(),
+            'name' => $this->name,
+            'incremental' => $this->incremental ? 'true' : 'false',
+            'extractDate' => date('Y-m-d\TH:i:s'),
+        ];
+    }
+
+    public function getNamespace(): string
+    {
+        return 'http://www.bazaarvoice.com/xs/PRR/ProductFeed/'.self::$apiVersion;
     }
 
     private function generateInteractionsXMLArray(): array
