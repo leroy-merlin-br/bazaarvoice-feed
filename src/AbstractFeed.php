@@ -40,29 +40,27 @@ abstract class AbstractFeed implements FeedInterface
 
     public function printFeed(FeedElementInterface $feed): string
     {
-        $xmlString = false;
-
         if ($xml = $this->generateFeedXML($feed)) {
             $xmlString = $xml->asXML();
             $xmlString = str_replace(['<![CDATA[', ']]>'], '', $xmlString);
+
+            return $xmlString;
         }
 
-        return $xmlString;
+        throw new Exception('Unable to generate XML Feed');
     }
 
     public function saveFeed(FeedElementInterface $feed, string $directory, string $filename)
     {
-        if (!$feedXml = $this->printFeed($feed)) {
-            return false;
-        }
+        $feedXml = $this->printFeed($feed);
 
         if (!$file = gzencode($feedXml)) {
-            return false;
+            throw new Exception('Unable to gzip XML file.');
         }
 
         $directory = rtrim($directory, '/\\');
         if (!is_dir($directory) || !is_writable($directory)) {
-            return false;
+            throw new Exception('Directory isn\'t writable or is not a valid.');
         }
 
         $filePath = $directory.'/'.$filename.'.xml.gz';
@@ -71,13 +69,11 @@ abstract class AbstractFeed implements FeedInterface
             return $filePath;
         }
 
-        return false;
+        throw new Exception('Unable to save XML file on directory.');
     }
 
     public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', string $sftpPort = '22'): bool
     {
-        $fileSent = false;
-
         $filename = basename($filePath);
 
         $sftp = new SFTP($this->getHost(), $sftpPort);
@@ -85,20 +81,14 @@ abstract class AbstractFeed implements FeedInterface
         $sftpDirectory = rtrim($sftpDirectory, '/');
         $sftpDirectory = ltrim($sftpDirectory, '/');
 
-        try {
-            if ($sftp->login($sftpUsername, $sftpPassword)) {
-                $rootDirectory = rtrim('/', $sftp->realpath('.'));
-                $fullDirectoryPath = $rootDirectory.'/'.$sftpDirectory;
-                $sftp->chdir($fullDirectoryPath);
-                if ($sftp->put($filename, file_get_contents($filePath, false))) {
-                    $fileSent = true;
-                }
-            }
-        } catch (Exception $e) {
-            $fileSent = $e->getMessage();
+        if ($sftp->login($sftpUsername, $sftpPassword)) {
+            $rootDirectory = rtrim('/', $sftp->realpath('.'));
+            $fullDirectoryPath = $rootDirectory.'/'.$sftpDirectory;
+            $sftp->chdir($fullDirectoryPath);
+            return $sftp->put($filename, file_get_contents($filePath, false));
         }
 
-        return $fileSent;
+        throw new Exception('Failed to login to sFTP');
     }
 
     public function getHost()
