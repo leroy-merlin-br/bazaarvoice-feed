@@ -14,7 +14,20 @@ abstract class AbstractFeed implements FeedInterface
      */
     protected $useStage = false;
 
+    /**
+     * @var bool
+     */
+    protected $shouldCompressFile = true;
+
+    /**
+     * @var string
+     */
     protected $baseHost = 'sftp';
+
+    /**
+     * @var string
+     */
+    private $fileType = '.xml.gz';
 
     public function __construct()
     {
@@ -53,8 +66,9 @@ abstract class AbstractFeed implements FeedInterface
     public function saveFeed(FeedElementInterface $feed, string $directory, string $filename)
     {
         $feedXml = $this->printFeed($feed);
+        $file = $this->shouldCompressFile ? gzencode($feedXml) : $feedXml;
 
-        if (!$file = gzencode($feedXml)) {
+        if (!$file) {
             throw new Exception('Unable to gzip XML file.');
         }
 
@@ -63,7 +77,7 @@ abstract class AbstractFeed implements FeedInterface
             throw new Exception('Directory isn\'t writable or is not a valid.');
         }
 
-        $filePath = $directory.'/'.$filename.'.xml.gz';
+        $filePath = $directory.'/'.$filename.$this->fileType;
 
         if (file_put_contents($filePath, $file)) {
             return $filePath;
@@ -105,6 +119,23 @@ abstract class AbstractFeed implements FeedInterface
     public function setBaseHost(string $baseHost)
     {
         $this->baseHost = $baseHost;
+
+        return $this;
+    }
+
+    public function withoutCompression()
+    {
+        $this->shouldCompressFile = false;
+        $this->fileType = '.xml';
+
+        return $this;
+    }
+
+    public function withCompression()
+    {
+        $this->shouldCompressFile = true;
+        $this->fileType = '.xml.gz';
+
         return $this;
     }
 
