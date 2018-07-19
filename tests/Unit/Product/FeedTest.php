@@ -117,4 +117,22 @@ class FeedTest extends TestCase
         // Assertions
         $this->assertTrue(vfsStreamWrapper::getRoot()->hasChild($testFeedFile . '.xml.gz'));
     }
+
+    /** @test */
+    public function it_saves_a_feed_without_compress()
+    {
+        // Set
+        $testFeedFile = 'testFeed';
+        $feed = new Feed();
+
+        // Actions
+        $feedElement = $feed->withoutCompression()
+            ->newFeed($testFeedFile);
+        vfsStreamWrapper::register();
+        vfsStreamWrapper::setRoot(new vfsStreamDirectory($testFeedFile . '_dir'));
+        $feed->saveFeed($feedElement, vfsStream::url($testFeedFile . '_dir'), $testFeedFile);
+
+        // Assertions
+        $this->assertTrue(vfsStreamWrapper::getRoot()->hasChild($testFeedFile . '.xml'));
+    }
 }
