@@ -126,8 +126,8 @@ class FeedTest extends TestCase
         $feed = new Feed();
 
         // Actions
-        $feedElement = $feed->newFeed($testFeedFile)
-            ->withoutCompress();
+        $feedElement = $feed->withoutCompression()
+            ->newFeed($testFeedFile);
         vfsStreamWrapper::register();
         vfsStreamWrapper::setRoot(new vfsStreamDirectory($testFeedFile . '_dir'));
         $feed->saveFeed($feedElement, vfsStream::url($testFeedFile . '_dir'), $testFeedFile);
