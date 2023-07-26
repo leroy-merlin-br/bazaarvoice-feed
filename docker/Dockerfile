@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:8.0-fpm
 LABEL maintainer="boitata@leroymerlin.com.br"
 
 USER root:root
@@ -18,7 +18,7 @@ RUN apt-get update -qq \
     intl pcntl zip \
   && rm -rf /tmp/*
 
-RUN pecl install xdebug-2.9.8 \
+RUN pecl install xdebug-3.2.1 \
   && docker-php-ext-enable xdebug
 
 ARG UID=1000
