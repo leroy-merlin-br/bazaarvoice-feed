@@ -88,6 +88,10 @@ abstract class AbstractFeed implements FeedInterface
 
     public function sendFeed(string $filePath, string $sftpUsername, string $sftpPassword, string $sftpDirectory = 'import-inbox', string $sftpPort = '22'): bool
     {
+        if (filesize($filePath) === 0) {
+            throw new Exception('The file is empty.');
+        }
+
         $filename = basename($filePath);
 
         $sftp = new SFTP($this->getHost(), $sftpPort);
