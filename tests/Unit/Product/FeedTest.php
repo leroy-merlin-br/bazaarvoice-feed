@@ -135,4 +135,48 @@ class FeedTest extends TestCase
         // Assertions
         $this->assertTrue(vfsStreamWrapper::getRoot()->hasChild($testFeedFile . '.xml'));
     }
+
+    /** @test */
+    public function it_get_exception_trying_send_empty_files()
+    {
+        // Set
+        $testFeedFile = 'test-feed-file.txt';
+
+        vfsStreamWrapper::register();
+        vfsStreamWrapper::setRoot(new vfsStreamDirectory('root_dir'));
+        vfsStream::newFile($testFeedFile)->at(vfsStreamWrapper::getRoot());
+
+        $feed = new Feed();
+
+        // Expect Exception
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('The file is empty.');
+
+        // Actions
+        $filePath = vfsStream::url('root_dir/' . $testFeedFile);
+        $feed->sendFeed($filePath, 'user', 'password');
+    }
+
+    /** @test */
+    public function it_get_exception_when_ftp_login_fails()
+    {
+        // Set
+        $testFeedFile = 'test-feed-file.txt';
+
+        vfsStreamWrapper::register();
+        vfsStreamWrapper::setRoot(new vfsStreamDirectory('root_dir'));
+        vfsStream::newFile($testFeedFile)
+            ->at(vfsStreamWrapper::getRoot())
+            ->withContent('teste');
+
+        $feed = new Feed();
+
+        // Expect Exception
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Failed to login to sFTP');
+
+        // Actions
+        $filePath = vfsStream::url('root_dir/' . $testFeedFile);
+        $feed->sendFeed($filePath, 'user', 'password');
+    }
 }
