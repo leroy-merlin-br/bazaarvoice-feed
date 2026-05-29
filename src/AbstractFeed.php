@@ -4,7 +4,7 @@ namespace BazaarVoice;
 use Exception;
 use BazaarVoice\Elements\FeedElement;
 use BazaarVoice\Elements\FeedElementInterface;
-use phpseclib\Net\SFTP;
+use phpseclib3\Net\SFTP;
 use SimpleXMLElement;
 
 abstract class AbstractFeed implements FeedInterface
