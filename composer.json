@@ -18,14 +18,15 @@
     }
   ],
   "require": {
-    "php": "^8.0",
+    "php": "^8.2",
     "phpseclib/phpseclib": "^3.0",
     "ext-simplexml": "*"
   },
   "require-dev": {
     "ext-curl": "*",
     "phpunit/phpunit": "^7.5.20 || ^8.5.29",
-    "mikey179/vfsstream": "~1.6.11"
+    "mikey179/vfsstream": "~1.6.11",
+    "rector/rector": "^2.8"
   },
   "autoload": {
     "psr-4" : {

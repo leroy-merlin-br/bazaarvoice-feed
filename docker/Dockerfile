@@ -1,9 +1,9 @@
-FROM php:8.0-fpm
+FROM php:8.4-fpm
 LABEL maintainer="boitata@leroymerlin.com.br"
 
 USER root:root
 
-COPY --from=composer:2.2.18 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 ENV PATH=$PATH:/var/www/.composer/vendor/bin
 
 RUN apt-get update -qq \
@@ -18,7 +18,7 @@ RUN apt-get update -qq \
     intl pcntl zip \
   && rm -rf /tmp/*
 
-RUN pecl install xdebug-3.2.1 \
+RUN pecl install xdebug-3.4.7 \
   && docker-php-ext-enable xdebug
 
 ARG UID=1000
